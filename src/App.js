@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css';  // Importing the CSS file
 
 function App() {
   const [city, setCity] = useState('');
@@ -23,9 +24,15 @@ function App() {
     }
   };
 
+  const handleReset = () => {
+    setCity('');
+    setWeather(null);
+    setError('');
+  };
+
   return (
     <div className="App">
-      <h1>Weather App</h1>
+      <h1 style={{color:'#3498db'}}>Weather App</h1>
       <input
         type="text"
         placeholder="Enter city"
@@ -34,7 +41,11 @@ function App() {
       />
       <button onClick={handleSearch}>Get Weather</button>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <button onClick={handleReset} className="reset-btn">
+        Reset
+      </button>
+
+      {error && <p className="error">{error}</p>}
 
       {weather && (
         <div>
